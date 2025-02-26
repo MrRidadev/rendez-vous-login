@@ -10,7 +10,7 @@
             <a href="login.jsp"><button class="btn btn-outline-success me-2" type="submit" >Log IN</button>
             </a>
 
-            <a href="singup.jsp">
+            <a href="login">
                 <button class="btn btn-outline-success" type="submit">Sign UP</button>
 
             </a>

@@ -43,12 +43,11 @@ public class UsersDao {
     public void insertUsers(Users users) throws SQLException {
         try(Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)){
-            preparedStatement.setInt(1, users.getId());
-            preparedStatement.setString(2, users.getNom());
+            preparedStatement.setString(1, users.getNom());
+            preparedStatement.setString(2, users.getMotdepass());
             preparedStatement.setString(3, users.getEmail());
-            preparedStatement.setString(4, users.getPassword());
-            preparedStatement.setInt(6,users.getTele());
-            preparedStatement.setString(7, users.getSpecialite());
+            preparedStatement.setString(4, users.getTele());
+            preparedStatement.setString(5, users.getSpecialite());
             preparedStatement.executeUpdate();
         }catch(Exception e) {
             e.printStackTrace();
@@ -71,11 +70,11 @@ public class UsersDao {
             while (rs.next()) {
                 String nom = rs.getString("nom");
                 String email = rs.getString("email");
-                String motPass = rs.getString("motPass");
-                int numero = rs.getInt("numero");
+                String motPass = rs.getString("motpasse");
+                String numero = rs.getString("numero");
                 String specialisation = rs.getString("specialisation");
 
-                users = new Users(id,nom,email,motPass,numero,specialisation);
+                users = new Users(nom,email,motPass,numero,specialisation);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -100,10 +99,10 @@ public class UsersDao {
                 String nom = rs.getString("nom");
                 String email = rs.getString("email");
                 String motPass = rs.getString("motPass");
-                int numero = rs.getInt("numero");
+                String numero = rs.getString("numero");
                 String specialisation = rs.getString("specialisation");
 
-                UserAryy.add(new Users(id, nom, email, motPass,numero,specialisation));
+                UserAryy.add(new Users(nom, email, motPass,numero,specialisation));
             }
         } catch (SQLException e) {
             printSQLException(e);

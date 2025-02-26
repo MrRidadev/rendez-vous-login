@@ -4,38 +4,33 @@ public class Users {
     int id;
     String nom;
     String email;
-    String password;
     String motdepass;
-    int tele;
+    String tele;
     String specialite;
 
 
 public Users(){}
 
-public Users(int id, String nom, String email, String password, String motdepass, int tele, String specialite) {
+public Users(int id, String nom, String email, String motdepass, String tele, String specialite) {
     this.id = id;
     this.nom = nom;
     this.email = email;
-    this.password = password;
     this.motdepass = motdepass;
     this.tele = tele;
     this.specialite = specialite;
 
 }
 
-    public Users( String nom, String email, String password, String motdepass, int tele, String specialite) {
+    public Users( String nom, String email, String motdepass, String tele, String specialite) {
 
         this.nom = nom;
         this.email = email;
-        this.password = password;
         this.motdepass = motdepass;
         this.tele = tele;
         this.specialite = specialite;
 
     }
 
-    public Users(int id, String nom, String email, String motPass, int numero, String specialisation) {
-    }
 
     public int getId() {
         return id;
@@ -61,13 +56,7 @@ public Users(int id, String nom, String email, String password, String motdepass
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getMotdepass() {
         return motdepass;
@@ -77,11 +66,11 @@ public Users(int id, String nom, String email, String password, String motdepass
         this.motdepass = motdepass;
     }
 
-    public int getTele() {
+    public String getTele() {
         return tele;
     }
 
-    public void setTele(int tele) {
+    public void setTele(String tele) {
         this.tele = tele;
     }
 
@@ -99,7 +88,6 @@ public Users(int id, String nom, String email, String password, String motdepass
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", motdepass='" + motdepass + '\'' +
                 ", tele=" + tele +
                 ", specialite='" + specialite + '\'' +
