@@ -34,6 +34,9 @@ public Users(int id, String nom, String email, String password, String motdepass
 
     }
 
+    public Users(int id, String nom, String email, String motPass, int numero, String specialisation) {
+    }
+
     public int getId() {
         return id;
     }

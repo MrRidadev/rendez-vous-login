@@ -1,0 +1,6 @@
+127.0.0.1 - - [26/Feb/2025:12:17:29 +0000] "GET /rendez-vous-login HTTP/1.1" 302 -
+127.0.0.1 - - [26/Feb/2025:12:17:30 +0000] "GET /rendez-vous-login/ HTTP/1.1" 200 739
+127.0.0.1 - - [26/Feb/2025:12:17:32 +0000] "GET /rendez-vous-login/signup.jsp HTTP/1.1" 404 758
+127.0.0.1 - - [26/Feb/2025:12:17:36 +0000] "GET /rendez-vous-login/signup.jsp HTTP/1.1" 404 758
+127.0.0.1 - - [26/Feb/2025:12:17:40 +0000] "GET /favicon.ico HTTP/1.1" 404 682
+127.0.0.1 - - [26/Feb/2025:12:17:43 +0000] "GET /rendez-vous-login/login.jsp HTTP/1.1" 200 1228
