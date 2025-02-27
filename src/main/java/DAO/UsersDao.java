@@ -19,6 +19,8 @@ public class UsersDao {
 
     private static final String SELECT_ALL_USERS =
             "SELECT * FROM users";
+    private static final String SELECT_ALL_check =
+           " SELECT email, motpasse FROM users WHERE email = ? AND motpasse = ?";
 
     // Constructeur
     public UsersDao() {}
@@ -39,13 +41,38 @@ public class UsersDao {
 
     }
 
+    public void Check(String email, String motPass) {
+        Users users = null;
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_check);) {
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, motPass);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                String userEmail = rs.getString("email");
+                String userMotPass = rs.getString("motpasse");
+
+
+
+
+            } else {
+                System.out.println("Identifiants incorrects !");
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
     // insert users
     public void insertUsers(Users users) throws SQLException {
         try(Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)){
             preparedStatement.setString(1, users.getNom());
-            preparedStatement.setString(2, users.getMotdepass());
-            preparedStatement.setString(3, users.getEmail());
+            preparedStatement.setString(2, users.getEmail());
+
+            preparedStatement.setString(3, users.getMotdepass());
             preparedStatement.setString(4, users.getTele());
             preparedStatement.setString(5, users.getSpecialite());
             preparedStatement.executeUpdate();

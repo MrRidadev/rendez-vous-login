@@ -39,9 +39,13 @@ public class UsersServler extends HttpServlet {
                     case "/login":
                         LoginPage(request, response);
                         break;
+                        case "/checklogin":
+                            break;
+
+
 
                 default:
-
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
                     break;
             }
         } catch (Exception e) {
@@ -56,6 +60,12 @@ public class UsersServler extends HttpServlet {
 
        RequestDispatcher rd = request.getRequestDispatcher("singup.jsp");
        rd.forward(request, response);
+
+    }
+    private void checklogin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+
+
 
     }
     private void LoginUser(HttpServletRequest request, HttpServletResponse response)

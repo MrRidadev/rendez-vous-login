@@ -11,7 +11,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4" style="width: 350px;">
         <h3 class="text-center mb-3">Login</h3>
-        <form>
+        <form action="" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="Enter your username" required>

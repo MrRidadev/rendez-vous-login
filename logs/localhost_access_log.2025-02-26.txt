@@ -74,3 +74,13 @@
 127.0.0.1 - - [26/Feb/2025:17:28:56 +0000] "GET /rendez-vous-login/login HTTP/1.1" 200 1992
 127.0.0.1 - - [26/Feb/2025:17:29:07 +0000] "POST /rendez-vous-login/addlogin HTTP/1.1" 302 -
 127.0.0.1 - - [26/Feb/2025:17:29:07 +0000] "GET /rendez-vous-login/index.jsp HTTP/1.1" 200 734
+127.0.0.1 - - [26/Feb/2025:17:30:54 +0000] "GET /rendez-vous-login HTTP/1.1" 302 -
+127.0.0.1 - - [26/Feb/2025:17:30:54 +0000] "GET /rendez-vous-login HTTP/1.1" 302 -
+127.0.0.1 - - [26/Feb/2025:17:30:55 +0000] "GET /rendez-vous-login/ HTTP/1.1" 200 734
+127.0.0.1 - - [26/Feb/2025:17:30:55 +0000] "GET /rendez-vous-login/ HTTP/1.1" 200 734
+127.0.0.1 - - [26/Feb/2025:17:31:00 +0000] "GET /rendez-vous-login/login HTTP/1.1" 200 1992
+127.0.0.1 - - [26/Feb/2025:17:31:20 +0000] "POST /rendez-vous-login/addlogin HTTP/1.1" 302 -
+127.0.0.1 - - [26/Feb/2025:17:31:20 +0000] "GET /rendez-vous-login/index.jsp HTTP/1.1" 200 734
+127.0.0.1 - - [26/Feb/2025:17:35:12 +0000] "GET /rendez-vous-login/login HTTP/1.1" 200 1992
+127.0.0.1 - - [26/Feb/2025:17:35:33 +0000] "POST /rendez-vous-login/addlogin HTTP/1.1" 302 -
+127.0.0.1 - - [26/Feb/2025:17:35:33 +0000] "GET /rendez-vous-login/index.jsp HTTP/1.1" 200 734
