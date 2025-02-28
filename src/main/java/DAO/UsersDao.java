@@ -20,7 +20,7 @@ public class UsersDao {
     private static final String SELECT_ALL_USERS =
             "SELECT * FROM users";
   private static final String SELECT_USERS_BY_EMAIL_AND_PASSWORD =
-          " SELECT * FROM users WHERE email = ? AND motPass = ?";
+          "SELECT role FROM users WHERE email = ? AND motPass = ?";
 
     // Constructeur
     public UsersDao() {}
@@ -41,22 +41,19 @@ public class UsersDao {
 
     }
 
-    public Users authenticateUser(String email, String motPass) {
-        String query = SELECT_USERS_BY_EMAIL_AND_PASSWORD;
+    public String authenticateUser(String email, String motPass) {
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmt = conn.prepareStatement(SELECT_USERS_BY_EMAIL_AND_PASSWORD)) {
 
             stmt.setString(1, email);
+            stmt.setString(2, motPass);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String storedPassword = rs.getString("motPass");
 
-                // Vérification du mot de passe (sans BCrypt)
-                if (storedPassword.equals(motPass)) {
-                    return new Users(rs.getInt("id"), rs.getString("email"), rs.getString("role"));
-                }
+                    return rs.getString("role");
+
             }
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'authentification de l'utilisateur : " + e.getMessage());

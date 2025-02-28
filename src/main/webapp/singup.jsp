@@ -10,7 +10,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="/addlogin" method="post" class="card shadow-lg p-4">
+            <form action="addlogin" method="post" class="card shadow-lg p-4">
                 <h3 class="text-center mb-4">Inscription</h3>
 
                 <div class="mb-3">

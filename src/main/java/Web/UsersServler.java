@@ -10,9 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-@WebServlet("")
+@WebServlet("/")
 public class UsersServler extends HttpServlet {
 
 
@@ -22,7 +23,8 @@ public class UsersServler extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+       doGet(request, response);
+
     }
 
 
@@ -38,10 +40,9 @@ public class UsersServler extends HttpServlet {
                     case "/login":
                         LoginPage(request, response);
                         break;
-                        case "/checklogin":
+                        case "/logincheck":
+                            checklogin(request, response);
                             break;
-
-
 
                 default:
                         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -54,6 +55,32 @@ public class UsersServler extends HttpServlet {
 
 
     }
+    public void checklogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String email = request.getParameter("email");
+        String motPass = request.getParameter("motpass");
+
+        String role= usersDao.authenticateUser(email, motPass);
+
+        if (role != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", role);
+            switch (role) {
+                case "patient":
+                    RequestDispatcher rd = request.getRequestDispatcher("dashbord.jsp");
+                    rd.forward(request, response);
+                    break;
+                case "doctor":
+                    RequestDispatcher rq = request.getRequestDispatcher("dashboardDR.jsp");
+                    rq.forward(request, response);
+                    break;
+                default:
+                    response.sendRedirect("login.jsp?error=unauthorized");
+                    break;
+            }
+        } else {
+            response.sendRedirect("login.jsp?error=invalid");
+        }
+    }
     private void LoginPage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
 
@@ -61,12 +88,7 @@ public class UsersServler extends HttpServlet {
        rd.forward(request, response);
 
     }
-    private void checklogin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
 
-
-
-    }
     private void LoginUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
 

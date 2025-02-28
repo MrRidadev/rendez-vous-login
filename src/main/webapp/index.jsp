@@ -10,10 +10,10 @@
             <a href="login.jsp"><button class="btn btn-outline-success me-2" type="submit" >Log IN</button>
             </a>
 
-            <a href="login">
-                <button class="btn btn-outline-success" type="submit">Sign UP</button>
 
-            </a>
+                <a href="login" class="btn btn-outline-success" type="submit">Sign UP</a>
+
+
 
         </div>
     </div>
