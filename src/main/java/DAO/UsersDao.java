@@ -12,15 +12,15 @@ public class UsersDao {
     private static final String JDBC_PASSWORD = "0000";
 
     private static final String INSERT_USERS_SQL=
-            "INSERT INTO USERS (nom,email,motPass,numero,specialisation) VALUES (?, ?, ?, ?, ?)";
+            "INSERT INTO USERS (nom,email,motPass,numero,specialisation,role) VALUES (?,?, ?, ?, ?, ?)";
 
     private static final String SELECT_USERS_BY_ID =
             "SELECT id, nom,email,motPass,numero,specialisation FROM users WHERE id = ?";
 
     private static final String SELECT_ALL_USERS =
             "SELECT * FROM users";
-    private static final String SELECT_ALL_check =
-           " SELECT email, motpasse FROM users WHERE email = ? AND motpasse = ?";
+  private static final String SELECT_USERS_BY_EMAIL_AND_PASSWORD =
+          " SELECT * FROM users WHERE email = ? AND motPass = ?";
 
     // Constructeur
     public UsersDao() {}
@@ -41,28 +41,27 @@ public class UsersDao {
 
     }
 
-    public void Check(String email, String motPass) {
-        Users users = null;
+    public Users authenticateUser(String email, String motPass) {
+        String query = SELECT_USERS_BY_EMAIL_AND_PASSWORD;
 
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_check);) {
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, motPass);
-            ResultSet rs = preparedStatement.executeQuery();
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String userEmail = rs.getString("email");
-                String userMotPass = rs.getString("motpasse");
+                String storedPassword = rs.getString("motPass");
 
-
-
-
-            } else {
-                System.out.println("Identifiants incorrects !");
+                // Vérification du mot de passe (sans BCrypt)
+                if (storedPassword.equals(motPass)) {
+                    return new Users(rs.getInt("id"), rs.getString("email"), rs.getString("role"));
+                }
             }
         } catch (SQLException e) {
-            printSQLException(e);
+            System.err.println("Erreur lors de l'authentification de l'utilisateur : " + e.getMessage());
         }
+        return null;
     }
 
     // insert users
@@ -71,10 +70,10 @@ public class UsersDao {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)){
             preparedStatement.setString(1, users.getNom());
             preparedStatement.setString(2, users.getEmail());
-
             preparedStatement.setString(3, users.getMotdepass());
             preparedStatement.setString(4, users.getTele());
             preparedStatement.setString(5, users.getSpecialite());
+            preparedStatement.setString(6,users.getRole());
             preparedStatement.executeUpdate();
         }catch(Exception e) {
             e.printStackTrace();
@@ -100,8 +99,9 @@ public class UsersDao {
                 String motPass = rs.getString("motpasse");
                 String numero = rs.getString("numero");
                 String specialisation = rs.getString("specialisation");
+                String role = rs.getString("role");
 
-                users = new Users(nom,email,motPass,numero,specialisation);
+                users = new Users(nom,email,motPass,numero,specialisation,role);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -128,8 +128,9 @@ public class UsersDao {
                 String motPass = rs.getString("motPass");
                 String numero = rs.getString("numero");
                 String specialisation = rs.getString("specialisation");
+                String role = rs.getString("role");
 
-                UserAryy.add(new Users(nom, email, motPass,numero,specialisation));
+                UserAryy.add(new Users(nom, email, motPass,numero,specialisation,role));
             }
         } catch (SQLException e) {
             printSQLException(e);

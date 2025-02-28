@@ -10,7 +10,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="addlogin" method="post" class="card shadow-lg p-4">
+            <form action="/addlogin" method="post" class="card shadow-lg p-4">
                 <h3 class="text-center mb-4">Inscription</h3>
 
                 <div class="mb-3">
@@ -36,6 +36,10 @@
                 <div class="mb-3">
                     <label for="specialisation" class="form-label">Spécialisation *</label>
                     <input type="text" class="form-control" placeholder="Taper votre spécialisation en tant que médecin" name="specialisation" id="specialisation" >
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label">role *</label>
+                    <input type="text" class="form-control" placeholder="Taper votre role" name="role" id="role"  required>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">S'inscrire</button>

@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1>hello patient</h1>
+<h1>hello doctor</h1>
 </body>
 </html>

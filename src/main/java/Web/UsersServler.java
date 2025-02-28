@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-
-@WebServlet("/")
+@WebServlet("")
 public class UsersServler extends HttpServlet {
 
 
@@ -76,7 +75,8 @@ public class UsersServler extends HttpServlet {
         String password = request.getParameter("motpasse");
         String telephone = request.getParameter("tele");
         String specialisation = request.getParameter("specialisation");
-        Users users = new Users(username,email,password,telephone,specialisation);
+        String role = request.getParameter("role");
+        Users users = new Users(username,email,password,telephone,specialisation,role);
         usersDao.insertUsers(users);
         System.out.println(users);
         response.sendRedirect("index.jsp");

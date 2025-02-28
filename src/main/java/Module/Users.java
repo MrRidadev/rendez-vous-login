@@ -7,31 +7,42 @@ public class Users {
     String motdepass;
     String tele;
     String specialite;
+    String role;
 
 
 public Users(){}
 
-public Users(int id, String nom, String email, String motdepass, String tele, String specialite) {
+public Users(int id, String nom, String email, String motdepass, String tele, String specialite,String role) {
     this.id = id;
     this.nom = nom;
     this.email = email;
     this.motdepass = motdepass;
     this.tele = tele;
     this.specialite = specialite;
+    this.role = role;
 
 }
 
-    public Users( String nom, String email, String motdepass, String tele, String specialite) {
+    public Users( String nom, String email, String motdepass, String tele, String specialite,String role) {
 
         this.nom = nom;
         this.email = email;
         this.motdepass = motdepass;
         this.tele = tele;
         this.specialite = specialite;
+        this.role = role;
 
     }
 
+    public Users(int id, String email, String role) {
+        this.id = id;
+        this.email = email;
+        this.role = role;
+    }
 
+    public String getRole() {
+    return role;
+    }
     public int getId() {
         return id;
     }
@@ -89,8 +100,9 @@ public Users(int id, String nom, String email, String motdepass, String tele, St
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
                 ", motdepass='" + motdepass + '\'' +
-                ", tele=" + tele +
+                ", tele='" + tele + '\'' +
                 ", specialite='" + specialite + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
